@@ -2,9 +2,14 @@ import React, {useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axiosApi from '../../axiosApi';
 
+interface Page {
+  title: string;
+  content: string;
+}
+
 const PageContent = () => {
   const {pageName} = useParams();
-  const [pages, setPages] = useState({});
+  const [pages, setPages] = useState<Page>({title: '', content: ''});
 
   useEffect(() => {
     axiosApi.get(`pages/${pageName}.json`)
